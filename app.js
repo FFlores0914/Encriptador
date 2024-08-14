@@ -1,29 +1,63 @@
+const shift = 3; 
 
-// Función para encriptar el texto
-function encriptadorDetexto() {
-    let encriptador = document.getElementById("encriptador").value;
-    let textoEncriptado = CryptoJS.AES.encrypt(encriptador, 'clave-secreta').toString();
-    document.getElementById("encriptador").value = textoEncriptado;
+function isValidInput(input) {
+    const regex = /^[a-z]+$/; 
+    return regex.test(input);
 }
 
-// Función para desencriptar el texto
-function desencriptadorDetexto() {
-    let encriptado = document.getElementById("encriptador").value;
-    let bytes = CryptoJS.AES.decrypt(encriptado, 'clave-secreta');
-    let textoDesencriptado = bytes.toString(CryptoJS.enc.Utf8);
-    document.getElementById("encriptador").value = textoDesencriptado;
+function encrypt() {
+    const inputElement = document.querySelector('.cajon_de_captura_texto');
+    const input = inputElement.value.trim();
+
+    if (!isValidInput(input)) {
+        displayMessage('Error: Solo se permiten letras minúsculas sin espacios ni caracteres especiales.', true);
+        return;
+    }
+
+    let encryptedWord = '';
+
+    for (let i = 0; i < input.length; i++) {
+        let charCode = input.charCodeAt(i);
+
+        if (charCode >= 97 && charCode <= 122) {
+            charCode = ((charCode - 97 + shift) % 26) + 97;
+        }
+
+        encryptedWord += String.fromCharCode(charCode);
+    }
+
+    displayMessage(`Palabra encriptada: ${encryptedWord}`, false);
 }
 
-// Eventos para los botones
-document.querySelector('.boton-encriptador1').addEventListener('click', encriptadorDetexto);
-document.querySelector('.boton-desencriptar').addEventListener('click', desencriptadorDetexto);
+function decrypt() {
+    const inputElement = document.querySelector('.cajon_de_captura_texto');
+    const input = inputElement.value.trim();
 
-// Función para copiar el texto encriptado/desencriptado
-function copiarTexto() {
-    let textoParaCopiar = document.querySelector('.evaluar');
-    textoParaCopiar.select();
-    document.execCommand('copy');
-    alert('Texto copiado: ' + textoParaCopiar.value);
+    if (!isValidInput(input)) {
+        displayMessage('Error: Solo se permiten letras minúsculas sin espacios ni caracteres especiales.', true);
+        return;
+    }
+
+    let decryptedWord = '';
+
+    for (let i = 0; i < input.length; i++) {
+        let charCode = input.charCodeAt(i);
+
+        if (charCode >= 97 && charCode <= 122) {
+            charCode = ((charCode - 97 - shift + 26) % 26) + 97;
+        }
+
+        decryptedWord += String.fromCharCode(charCode);
+    }
+
+    displayMessage(`Palabra desencriptada: ${decryptedWord}`, false);
 }
 
-document.querySelector('button[type="submit"]').addEventListener('click', copiarTexto);
+function displayMessage(message, isError) {
+    const messageElement = document.querySelector('.texto-mensaje');
+    messageElement.textContent = message;
+    messageElement.style.color = isError ? 'red' : 'black'; 
+}
+
+document.querySelector('.boton-encriptador').addEventListener('click', encrypt);
+document.querySelector('.boton-desencriptar').addEventListener('click', decrypt);
