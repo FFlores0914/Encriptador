@@ -25,6 +25,7 @@ img{
 .imagen_logo{
     position: absolute ;
     margin: 40px 0px 0px 40px;
+    background: transparent;
 }
 
 .logo{
@@ -32,13 +33,14 @@ img{
     align-items: flex-start;
     width: 120px;
     height: 48px;
+    background: transparent;
 }
 
 
 .cajon-general{
     display: flex;
     flex-direction: row;
-    background: url(./imagenes/portada.png) no-repeat;
+    background: url(./imagenes/layered-steps-haikei.svg) no-repeat;
     background-size: cover;
     background-position: center;
 }
@@ -77,6 +79,9 @@ img{
     
 }
 
+.img-aviso{
+    background: transparent;
+}
 .texto-aviso{
     width: 100%;
     font-style: normal;
@@ -185,6 +190,7 @@ footer {
     height: 5px;
     font-size: 20px;
     font-weight: 700;
+    background: transparent;
  }
 
 .logo-redes:hover{
@@ -266,7 +272,7 @@ footer {
      }
      .footer{
         display: flex;
-        flex-direction: column; /* Cambia la dirección a columna */
+        flex-direction: column; 
         align-items: center;
      }
      .logo-redes{
