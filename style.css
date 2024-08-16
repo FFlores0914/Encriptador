@@ -43,6 +43,7 @@ img{
     background: url(./imagenes/layered-steps-haikei.svg) no-repeat;
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
 }
 
 .cajon_de_captura{
@@ -98,6 +99,7 @@ img{
     align-items: flex-start;
     gap: 8px;
     top: 300px;
+    background: transparent;
 }
 
 .boton-encriptador{
@@ -148,14 +150,16 @@ img{
 }
 
 .contenedor-imagen{
-    width: 250px;
+    width: 230px;
     margin: auto;
-    margin-top: 50%;
-    background: #e5e5e5;
+    margin-top: 40%;
+    background: transparent;
 }
 
 .imagen-principal{
     background: #FFFFFF;
+    box-shadow: none;
+    
 }
 
 .texto-mensaje{
@@ -182,15 +186,17 @@ img{
     background: aquamarine;
 }
 
+
 footer {
-    margin-top: 25px;
-    padding: 25px;
+    margin-top: 20px;
+    padding: 20px;
     color: #343440;
     text-align: center;
     height: 5px;
     font-size: 20px;
     font-weight: 700;
     background: transparent;
+    
  }
 
 .logo-redes:hover{
@@ -231,16 +237,22 @@ footer {
     }
     .contenedor-imagen-principal{
         display: flex;
-        flex-direction: column;
-        height: auto;
+        justify-content: center;
+        align-items: center;
+        height: 70%; 
+        width: 50%; 
+        padding: 20px; 
+        box-sizing: border-box;
+    }      
+    
+    .texto-mensaje{
+        display: flex;
+        justify-content: center;
+        align-items: center;
         
-      
-    }
-    .imagen-principal{
-        display: none;
+
     }
     
-    }
     .botonones-encritador{
         display: flex;
         flex-direction: row;
@@ -252,12 +264,16 @@ footer {
     
     .footer{
        font-size: 15px;
+       background: transparent;
     }
     .logo-redes{
         margin-left: 10px;
         background: transparent;
 
     }
+
+ }
+
 
 
 @media(max-width: 735px){
@@ -274,6 +290,7 @@ footer {
         display: flex;
         flex-direction: column; 
         align-items: center;
+        background: transparent;
      }
      .logo-redes{
         padding: 0 50px;
