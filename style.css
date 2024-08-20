@@ -1,17 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
-:root{
-    --fuente:#e5e5e5;
-    --fondo: #FFFFFF;
-}
+
+
 * {
     margin: 0;
     padding: 0;
     text-decoration: none;
-    background: var(--fondo);
     font-family: "Inter", sans-serif;
     box-sizing: border-box;
 }
+
 
 body{
     height: 100%;
@@ -117,6 +115,7 @@ img{
     border: 1px solid #0a3871;
     border-radius: 24px;
     cursor: pointer;
+    transition: all 0.3s ease;
 
 }
 
@@ -134,8 +133,23 @@ img{
     border: 1px solid #0a3871;
     border-radius: 24px;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
+.boton-encriptador:hover,
+.boton-desencriptar:hover{
+    background-color: #16e8d3;
+    color: #0a3871;
+    border: 2px solid #1db2cc;
+    box-shadow: 5px 5px 0px #5e52ff;
+}
+
+.boton-encriptador:active,
+.boton-desencriptar:active{
+    background-color: #fcf414;
+    box-shadow: none;
+    transform: translateY(4px);
+}
 
 .contenedor-imagen-principal{
     width: 400px;
@@ -180,11 +194,6 @@ img{
     color: #495057;
 }
 
-.boton-encriptador:hover,
-.boton-desencriptar:hover{
-    transform: scale(0.97);
-    background: aquamarine;
-}
 
 
 footer {
@@ -195,7 +204,7 @@ footer {
     height: 5px;
     font-size: 20px;
     font-weight: 700;
-    background: transparent;
+  
     
  }
 
@@ -262,9 +271,11 @@ footer {
         
     }
     
+   
+    }
     .footer{
        font-size: 15px;
-       background: transparent;
+       
     }
     .logo-redes{
         margin-left: 10px;
@@ -290,7 +301,7 @@ footer {
         display: flex;
         flex-direction: column; 
         align-items: center;
-        background: transparent;
+        
      }
      .logo-redes{
         padding: 0 50px;
