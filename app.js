@@ -1,63 +1,66 @@
-const shift = 3; 
+const desplazamiento = 3; 
 
-function isValidInput(input) {
-    const regex = /^[a-z]+$/; 
-    return regex.test(input);
+function esEntradaValida(entrada) {
+    const expresionRegular = /^[a-z\s\W]*$/;
+    return expresionRegular.test(entrada);
 }
 
-function encrypt() {
-    const inputElement = document.querySelector('.cajon_de_captura_texto');
-    const input = inputElement.value.trim();
+function encriptar() {
+    const elementoEntrada = document.querySelector('.cajon_de_captura_texto');
+    const entrada = elementoEntrada.value.trim();
 
-    if (!isValidInput(input)) {
-        displayMessage('Error: Solo se permiten letras minúsculas sin espacios ni caracteres especiales.', true);
+    if (!esEntradaValida(entrada)) {
+        mostrarMensaje('Error: Solo se permiten letras minúsculas sin acentos. Otros caracteres como espacios y signos de puntuación son aceptados.', true);
         return;
     }
 
-    let encryptedWord = '';
+    let palabraEncriptada = '';
 
-    for (let i = 0; i < input.length; i++) {
-        let charCode = input.charCodeAt(i);
+    for (let i = 0; i < entrada.length; i++) {
+        let codigoCaracter = entrada.charCodeAt(i);
 
-        if (charCode >= 97 && charCode <= 122) {
-            charCode = ((charCode - 97 + shift) % 26) + 97;
+        
+        if (codigoCaracter >= 97 && codigoCaracter <= 122) {
+            codigoCaracter = ((codigoCaracter - 97 + desplazamiento) % 26) + 97;
         }
 
-        encryptedWord += String.fromCharCode(charCode);
+        palabraEncriptada += String.fromCharCode(codigoCaracter);
     }
 
-    displayMessage(`Palabra encriptada: ${encryptedWord}`, false);
+    mostrarMensaje(`Palabra encriptada: ${palabraEncriptada}`, false);
 }
 
-function decrypt() {
-    const inputElement = document.querySelector('.cajon_de_captura_texto');
-    const input = inputElement.value.trim();
+function desencriptar() {
+    const elementoEntrada = document.querySelector('.cajon_de_captura_texto');
+    const entrada = elementoEntrada.value.trim();
 
-    if (!isValidInput(input)) {
-        displayMessage('Error: Solo se permiten letras minúsculas sin espacios ni caracteres especiales.', true);
+    if (!esEntradaValida(entrada)) {
+        mostrarMensaje('Error: Solo se permiten letras minúsculas sin acentos. Otros caracteres como espacios y signos de puntuación son aceptados.', true);
         return;
     }
 
-    let decryptedWord = '';
+    let palabraDesencriptada = '';
 
-    for (let i = 0; i < input.length; i++) {
-        let charCode = input.charCodeAt(i);
+    for (let i = 0; i < entrada.length; i++) {
+        let codigoCaracter = entrada.charCodeAt(i);
 
-        if (charCode >= 97 && charCode <= 122) {
-            charCode = ((charCode - 97 - shift + 26) % 26) + 97;
+        
+        if (codigoCaracter >= 97 && codigoCaracter <= 122) {
+            codigoCaracter = ((codigoCaracter - 97 - desplazamiento + 26) % 26) + 97;
         }
 
-        decryptedWord += String.fromCharCode(charCode);
+        palabraDesencriptada += String.fromCharCode(codigoCaracter);
     }
 
-    displayMessage(`Palabra desencriptada: ${decryptedWord}`, false);
+    mostrarMensaje(`Palabra desencriptada: ${palabraDesencriptada}`, false);
 }
 
-function displayMessage(message, isError) {
-    const messageElement = document.querySelector('.texto-mensaje');
-    messageElement.textContent = message;
-    messageElement.style.color = isError ? 'red' : 'black'; 
+function mostrarMensaje(mensaje, esError) {
+    const elementoMensaje = document.querySelector('.texto-mensaje');
+    elementoMensaje.textContent = mensaje;
+    elementoMensaje.style.color = esError ? 'red' : 'black'; 
 }
 
-document.querySelector('.boton-encriptador').addEventListener('click', encrypt);
-document.querySelector('.boton-desencriptar').addEventListener('click', decrypt);
+document.querySelector('.boton-encriptador').addEventListener('click', encriptar);
+document.querySelector('.boton-desencriptar').addEventListener('click', desencriptar);
+
